@@ -54,10 +54,22 @@ The merger synchronizes files; doloc translates their contents. The manual workf
 
 1. Restore `feature-merged` to replay the same input.
 2. Create a doloc API key and set `API_TOKEN` in your shell. Keep it out of Git and Angular client code.
-3. Run `bash curl-example.sh`. This is the video’s command and writes a separate `messages.de.translated.xlf` file. After a successful response and review, copy it to `src/locale/messages.de.xlf`.
+3. Commit your changes first, then run `bash curl-example.sh`. This is the video’s command: curl reads and updates `src/locale/messages.de.xlf` in place. Review the diff afterward.
 4. Build and verify again.
 
-For repeated use, `npm run translate` uses a temporary file and replaces the tracked translation file only after HTTP success. Both scripts require Bash and curl.
+The demonstrated command is:
+
+```sh
+curl --fail --silent --show-error --compressed \
+  https://api.doloc.io \
+  -H "Authorization: Bearer $API_TOKEN" \
+  --data-binary @src/locale/messages.de.xlf \
+  --output src/locale/messages.de.xlf
+```
+
+Use curl’s `--output`, not shell redirection (`>`), which would truncate the input before curl reads it. `--fail` prevents an HTTP error body from replacing the file, but an interrupted successful download can still leave a partial file. Commit first so you have a recovery point.
+
+For unattended use, `npm run translate` uses a temporary file and replaces the tracked translation file only after HTTP success. Both scripts require Bash and curl.
 
 ```sh
 npm run extract-i18n && npm run translate
@@ -79,3 +91,8 @@ Created for the maintainer of `ng-extract-i18n-merge` and creator of doloc (@dan
 - [Angular translation files](https://angular.dev/guide/i18n/translation-files)
 - [Angular localized builds](https://angular.dev/guide/i18n/merge)
 - [Optional doloc integration](https://doloc.io/getting-started/frameworks/angular/)
+
+The v2 same-file curl command was verified on 2026-10-06 with a second real
+request returning the same result. Local success and HTTP 503 checks verified
+that curl sent the complete input and that --fail preserved the original on
+an HTTP error. See evidence/same-file-request.json and same-file-local-check.json.

@@ -1,0 +1,12 @@
+{
+  "success": {
+    "exit_code": 0,
+    "sent_complete_input": true,
+    "output_correct": true
+  },
+  "fail": {
+    "exit_code": 22,
+    "sent_complete_input": true,
+    "output_correct": true
+  }
+}

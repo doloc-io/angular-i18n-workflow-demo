@@ -62,11 +62,13 @@ The merger synchronizes files; doloc translates their content.
 1. Restore feature-merged to replay the exact same input.
 2. Create your own API key at https://doloc.io and set API_TOKEN in your shell.
    Do not commit it. Do not put it in client-side Angular code.
-3. bash curl-example.sh
-   This is the exact command shown in the video: it writes a separate
-   messages.de.translated.xlf. After success and review, copy it to
-   src/locale/messages.de.xlf. Requires bash and curl.
-   For a repeatable script you can instead use: npm run translate
+3. Commit your changes first, then run: bash curl-example.sh
+   This is the exact command shown in the video: curl reads and updates
+   src/locale/messages.de.xlf in place. Requires Bash and curl.
+   Use --output, not shell redirection (>), which truncates the input first.
+   --fail prevents writing HTTP error bodies, but an interrupted successful
+   download can still leave a partial file. Git provides the recovery point.
+   For unattended automation you can instead use: npm run translate
    This sends the German XLIFF to https://api.doloc.io and uses a temporary file.
    Only replaces the tracked file after a successful HTTP response; failed
    requests cannot replace your translation file with an HTTP error body.
@@ -91,3 +93,8 @@ https://github.com/daniel-sc/ng-extract-i18n-merge
 https://angular.dev/guide/i18n/translation-files
 https://angular.dev/guide/i18n/merge
 https://doloc.io/getting-started/frameworks/angular/
+
+The v2 same-file curl command was verified on 2026-10-06 with a second real
+request returning the same result. Local success and HTTP 503 checks verified
+that curl sent the complete input and that --fail preserved the original on
+an HTTP error. See evidence/same-file-request.json and same-file-local-check.json.
