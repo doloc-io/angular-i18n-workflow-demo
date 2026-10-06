@@ -1,0 +1,37 @@
+{
+  "angular": "22.2.1",
+  "ng-extract-i18n-merge": "3.4.0",
+  "node": "24.21.0",
+  "checks": [
+    "native extraction left German file byte-identical",
+    "stable ID changed source retained old target and reset state to new",
+    "added message has English target and new state by default",
+    "removed message pruned",
+    "unchanged title retained",
+    "manual targets all translated",
+    "actual doloc targets all translated",
+    "baseline/manual/doloc localized production builds passed"
+  ],
+  "sha256": {
+    "baseline/messages.xlf": "9400798dd8c3966eaf9df7be3037fbe060e1cd558ecd9be01c09c2f6d01fa953",
+    "baseline/angular.json": "b6c321d7fadb12c5a36e8b8c9e94c0a81020c1cb9fb250d1646a5910f85e6053",
+    "baseline/app.html": "9e1f9abf5a01ebfab08f343224d7a9402c928464ff6e61a610e066384a84940b",
+    "baseline/messages.de.xlf": "09c5b897ac0cc9313078099e527eb9187a23d228113bcbfa5e0d97462ecf8c91",
+    "feature-native/messages.xlf": "a0472e7cebe2e2add54aa3a1496920125ea7adfdba546add8f530a9c827264f7",
+    "feature-native/angular.json": "b6c321d7fadb12c5a36e8b8c9e94c0a81020c1cb9fb250d1646a5910f85e6053",
+    "feature-native/app.html": "c35fa6260017309071e542919cbb69d99ef4117229797a42bba2d426d274af0a",
+    "feature-native/messages.de.xlf": "09c5b897ac0cc9313078099e527eb9187a23d228113bcbfa5e0d97462ecf8c91",
+    "feature-merged/messages.xlf": "01f1f55d15ca3692fd62293185c85042304d2ccb1851b7607f36fa26cda5aa5b",
+    "feature-merged/angular.json": "2f88b48f0770ec1508ef0d6cfce774232dce39fd22c4ece44e04dabf18524097",
+    "feature-merged/app.html": "c35fa6260017309071e542919cbb69d99ef4117229797a42bba2d426d274af0a",
+    "feature-merged/messages.de.xlf": "8fa6d6c91e3c809ebfc41fdb8fb69d66d9e00eddcdd409ebd37647944602ffac",
+    "manual/messages.xlf": "01f1f55d15ca3692fd62293185c85042304d2ccb1851b7607f36fa26cda5aa5b",
+    "manual/angular.json": "2f88b48f0770ec1508ef0d6cfce774232dce39fd22c4ece44e04dabf18524097",
+    "manual/app.html": "c35fa6260017309071e542919cbb69d99ef4117229797a42bba2d426d274af0a",
+    "manual/messages.de.xlf": "98c9cfd0a9bf5ecc0a9312a843ce90ccd091e914cbc5cc8fa07439191b9936e2",
+    "doloc/messages.xlf": "01f1f55d15ca3692fd62293185c85042304d2ccb1851b7607f36fa26cda5aa5b",
+    "doloc/angular.json": "2f88b48f0770ec1508ef0d6cfce774232dce39fd22c4ece44e04dabf18524097",
+    "doloc/app.html": "c35fa6260017309071e542919cbb69d99ef4117229797a42bba2d426d274af0a",
+    "doloc/messages.de.xlf": "98c9cfd0a9bf5ecc0a9312a843ce90ccd091e914cbc5cc8fa07439191b9936e2"
+  }
+}

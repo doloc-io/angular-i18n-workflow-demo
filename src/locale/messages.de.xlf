@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="app.label" datatype="html">
+        <source>A little room to focus</source>
+        <target state="translated">Ein bisschen Raum für Fokus</target>
+      </trans-unit>
+      <trans-unit id="task.remind" datatype="html">
+        <source>Remind me tomorrow</source>
+        <target state="translated">Erinnere mich morgen</target>
+      </trans-unit>
+      <trans-unit id="task.title" datatype="html">
+        <source>Your tasks</source>
+        <target state="translated">Deine Aufgaben</target>
+      </trans-unit>
+      <trans-unit id="task.description" datatype="html">
+        <source>Make time for it tomorrow.</source>
+        <target state="translated">Nimm dir morgen Zeit dafür.</target>
+      </trans-unit>
+      <trans-unit id="task.category" datatype="html">
+        <source>PERSONAL</source>
+        <target state="translated">PERSÖNLICH</target>
+      </trans-unit>
+      <trans-unit id="task.name" datatype="html">
+        <source>Plan a weekend away</source>
+        <target state="translated">Plane einen Wochenendausflug</target>
+      </trans-unit>
+      <trans-unit id="app.footer" datatype="html">
+        <source>Small steps. More headspace.</source>
+        <target state="translated">Kleine Schritte. Mehr Freiraum.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

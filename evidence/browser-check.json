@@ -1,0 +1,35 @@
+{
+  "errors": [],
+  "results": [
+    {
+      "name": "baseline",
+      "lang": "en",
+      "body": "t·\nEN\nDE\nA LITTLE ROOM TO FOCUS\nYour tasks\n\nGet it done today.\n\nPERSONAL\nPlan a weekend away\n\nNo reminders yet\n\n01\nSmall steps. More headspace."
+    },
+    {
+      "name": "baseline",
+      "lang": "de",
+      "body": "t·\nEN\nDE\nEIN BISSCHEN RAUM FÜR FOKUS\nDeine Aufgaben\n\nErledige es heute.\n\nPERSÖNLICH\nPlane einen Wochenendausflug\n\nNoch keine Erinnerungen\n\n01\nKleine Schritte. Mehr Freiraum."
+    },
+    {
+      "name": "manual",
+      "lang": "en",
+      "body": "t·\nEN\nDE\nA LITTLE ROOM TO FOCUS\nYour tasks\n\nMake time for it tomorrow.\n\nPERSONAL\nPlan a weekend away\nRemind me tomorrow\n01\nSmall steps. More headspace."
+    },
+    {
+      "name": "manual",
+      "lang": "de",
+      "body": "t·\nEN\nDE\nEIN BISSCHEN RAUM FÜR FOKUS\nDeine Aufgaben\n\nNimm dir morgen Zeit dafür.\n\nPERSÖNLICH\nPlane einen Wochenendausflug\nErinnere mich morgen\n01\nKleine Schritte. Mehr Freiraum."
+    },
+    {
+      "name": "doloc",
+      "lang": "en",
+      "body": "t·\nEN\nDE\nA LITTLE ROOM TO FOCUS\nYour tasks\n\nMake time for it tomorrow.\n\nPERSONAL\nPlan a weekend away\nRemind me tomorrow\n01\nSmall steps. More headspace."
+    },
+    {
+      "name": "doloc",
+      "lang": "de",
+      "body": "t·\nEN\nDE\nEIN BISSCHEN RAUM FÜR FOKUS\nDeine Aufgaben\n\nNimm dir morgen Zeit dafür.\n\nPERSÖNLICH\nPlane einen Wochenendausflug\nErinnere mich morgen\n01\nKleine Schritte. Mehr Freiraum."
+    }
+  ]
+}

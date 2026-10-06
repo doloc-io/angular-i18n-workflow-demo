@@ -1,0 +1,20 @@
+--- merged/messages.de.xlf
++++ doloc/messages.de.xlf
+@@ -8,7 +8,7 @@
+       </trans-unit>
+       <trans-unit id="task.remind" datatype="html">
+         <source>Remind me tomorrow</source>
+-        <target state="new">Remind me tomorrow</target>
++        <target state="translated">Erinnere mich morgen</target>
+       </trans-unit>
+       <trans-unit id="task.title" datatype="html">
+         <source>Your tasks</source>
+@@ -16,7 +16,7 @@
+       </trans-unit>
+       <trans-unit id="task.description" datatype="html">
+         <source>Make time for it tomorrow.</source>
+-        <target state="new">Erledige es heute.</target>
++        <target state="translated">Nimm dir morgen Zeit dafür.</target>
+       </trans-unit>
+       <trans-unit id="task.category" datatype="html">
+         <source>PERSONAL</source>
