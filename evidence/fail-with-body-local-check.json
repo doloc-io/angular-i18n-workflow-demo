@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-07",
+  "test": "Actual curl-example.sh against controlled local HTTP 400; no doloc API request",
+  "scriptSha256": "3842032ddedf3965a81a2abe4b37d5475a5cab86d4687fbcbed1c6d0eb7531f1",
+  "curlFlag": "--fail-with-body",
+  "httpStatus": 400,
+  "curlExitCode": 22,
+  "requestWasCompleteOriginal": true,
+  "outputContainsErrorBody": true,
+  "noFalseSuccessMessage": true,
+  "gitRestoreExitCode": 0,
+  "restoredBytesMatchCommittedTranslations": true,
+  "originalSha256": "8fa6d6c91e3c809ebfc41fdb8fb69d66d9e00eddcdd409ebd37647944602ffac",
+  "conclusion": "Inspect the saved HTTP error response, then restore committed translations from Git before retrying."
+}

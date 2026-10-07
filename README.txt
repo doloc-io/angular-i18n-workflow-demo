@@ -62,17 +62,23 @@ The merger synchronizes files; doloc translates their content.
 1. Restore feature-merged to replay the exact same input.
 2. Create your own API key at https://doloc.io and set API_TOKEN in your shell.
    Do not commit it. Do not put it in client-side Angular code.
-3. Commit your changes first, then run: bash curl-example.sh
-   This is the exact command shown in the video: curl reads and updates
-   src/locale/messages.de.xlf in place. Requires Bash and curl.
+3. Run npx ng extract-i18n and wait for extraction and merging to succeed.
+   Commit the updated files so Git can restore the merged translations.
+4. Run: bash curl-example.sh
+   This is the video's command: curl reads and updates
+   src/locale/messages.de.xlf in place. Requires Bash and curl >= 7.76.0.
+   Every time source text changes, extract and merge before running curl.
    Use --output, not shell redirection (>), which truncates the input first.
-   --fail prevents writing HTTP error bodies, but an interrupted successful
-   download can still leave a partial file. Git provides the recovery point.
+   --fail-with-body exits with code 22 on HTTP errors AND writes the API's
+   error response into the output file. Inspect it, then restore before retry:
+     git restore -- src/locale/messages.de.xlf
+   Only then retry bash curl-example.sh. If source text changed, extract and
+   merge again first. Otherwise you would send the error body as input.
+   An interrupted successful download can also leave a partial file.
    For unattended automation you can instead use: npm run translate
-   This sends the German XLIFF to https://api.doloc.io and uses a temporary file.
-   Only replaces the tracked file after a successful HTTP response; failed
-   requests cannot replace your translation file with an HTTP error body.
-4. Review the diff and run npm run build, then verify the localized app.
+   This uses a temporary file and only replaces the tracked translation file
+   after HTTP success. Failed requests leave the original translations intact.
+5. Review the diff and run npm run build, then verify the localized app.
 
 For a combined repeatable workflow: npm run extract-i18n && npm run translate
 Review is still a separate human step. Automatic wording can vary.
@@ -94,7 +100,19 @@ https://angular.dev/guide/i18n/translation-files
 https://angular.dev/guide/i18n/merge
 https://doloc.io/getting-started/frameworks/angular/
 
+HISTORICAL V2 VERIFICATION — 2026-10-06
+The earlier command used --fail, not the current --fail-with-body. Its
+different error-body behavior is historical evidence, not current behavior.
+
 The v2 same-file curl command was verified on 2026-10-06 with a second real
 request returning the same result. Local success and HTTP 503 checks verified
 that curl sent the complete input and that --fail preserved the original on
 an HTTP error. See evidence/same-file-request.json and same-file-local-check.json.
+
+V3.1 ERROR HANDLING — 2026-10-07
+A controlled local HTTP 400 test ran the current curl-example.sh. It uploaded
+the complete original file, saved the error body, and exited with code 22.
+Git restore recovered the exact committed translations. This was a local mock,
+not a new doloc API request; the successful saved result remains the real
+2026-10-06 response. See evidence/fail-with-body-local-check.json.
+Reproduce: node evidence/check-curl-example.mjs

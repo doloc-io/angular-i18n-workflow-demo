@@ -54,22 +54,30 @@ The merger synchronizes files; doloc translates their contents. The manual workf
 
 1. Restore `feature-merged` to replay the same input.
 2. Create a doloc API key and set `API_TOKEN` in your shell. Keep it out of Git and Angular client code.
-3. Commit your changes first, then run `bash curl-example.sh`. This is the video’s command: curl reads and updates `src/locale/messages.de.xlf` in place. Review the diff afterward.
-4. Build and verify again.
+3. Run `npx ng extract-i18n` and wait for extraction and merging to succeed. Commit the updated files so Git can restore the merged translations if needed.
+4. Run `bash curl-example.sh` on that updated German file, then review the diff. Curl reads and updates `src/locale/messages.de.xlf` in place. Every time source text changes, extract and merge before running curl.
+5. Build and verify again.
 
 The demonstrated command is:
 
 ```sh
-curl --fail --silent --show-error --compressed \
+curl --fail-with-body --silent --show-error --compressed \
   https://api.doloc.io \
   -H "Authorization: Bearer $API_TOKEN" \
   --data-binary @src/locale/messages.de.xlf \
   --output src/locale/messages.de.xlf
 ```
 
-Use curl’s `--output`, not shell redirection (`>`), which would truncate the input before curl reads it. `--fail` prevents an HTTP error body from replacing the file, but an interrupted successful download can still leave a partial file. Commit first so you have a recovery point.
+Requires **Bash and curl 7.76.0 or newer**. Use curl’s `--output`, not shell redirection (`>`), which would truncate the input before curl reads it. On HTTP errors, `--fail-with-body` exits with code 22 **and writes the API error response into the output file**. Inspect that response, then restore the committed translations before retrying; otherwise the next request would send the error body as input. An interrupted successful download can also leave a partial file.
 
-For unattended use, `npm run translate` uses a temporary file and replaces the tracked translation file only after HTTP success. Both scripts require Bash and curl.
+```sh
+# After inspecting an error response, restore the committed merged translations:
+git restore -- src/locale/messages.de.xlf
+# Then retry curl; extract and merge again first if the source text changed.
+bash curl-example.sh
+```
+
+For unattended use, `npm run translate` uses a temporary file and replaces the tracked translation file only after HTTP success. Its failure path leaves the original translation file intact. Both scripts require Bash and curl 7.76.0 or newer.
 
 ```sh
 npm run extract-i18n && npm run translate
@@ -92,7 +100,15 @@ Created for the maintainer of `ng-extract-i18n-merge` and creator of doloc (@dan
 - [Angular localized builds](https://angular.dev/guide/i18n/merge)
 - [Optional doloc integration](https://doloc.io/getting-started/frameworks/angular/)
 
+### Historical v2 verification — 2026-10-06
+
+The earlier v2 command used `--fail`, not the current `--fail-with-body`. Its different error-body behavior is retained here as historical evidence.
+
 The v2 same-file curl command was verified on 2026-10-06 with a second real
 request returning the same result. Local success and HTTP 503 checks verified
 that curl sent the complete input and that --fail preserved the original on
 an HTTP error. See evidence/same-file-request.json and same-file-local-check.json.
+
+### V3.1 error handling — 2026-10-07
+
+A controlled local HTTP 400 test ran the current `curl-example.sh`: curl uploaded the complete original file, saved the error body in place, and exited with code 22. Restoring from Git recovered the exact committed translations. This was a local mock error response, not a new doloc API request; the saved successful doloc result remains the real 2026-10-06 response. See `evidence/fail-with-body-local-check.json`; reproduce with `node evidence/check-curl-example.mjs`.

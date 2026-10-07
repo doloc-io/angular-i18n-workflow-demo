@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # The optional video chapter's command. Run from this project root.
-# Commit your changes first; this updates the translation file in place.
+# Run ng extract-i18n successfully, then commit the merged file before overwrite.
+# Requires curl >= 7.76.0. HTTP errors overwrite the output with the error body.
+# Inspect that response, then git restore -- src/locale/messages.de.xlf before retry.
 set -eu
 : "${API_TOKEN:?Set API_TOKEN to your doloc API key}"
-curl --fail --silent --show-error --compressed \
+curl --fail-with-body --silent --show-error --compressed \
   https://api.doloc.io \
   -H "Authorization: Bearer $API_TOKEN" \
   --data-binary @src/locale/messages.de.xlf \
